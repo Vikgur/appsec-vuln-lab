@@ -1,42 +1,49 @@
 # Оглавление
-
-- [О проекте](#о-проекте)  
-- [Подход](#подход)  
-- [Навигация](#навигация)  
-- [Как использовать лабораторию](#как-использовать-лабораторию)
+* [О проекте](#о-проекте)
+* [Подход](#подход)
+* [Навигация](#навигация)
+* [Как использовать репозиторий](#как-использовать-репозиторий)
 
 ---
 
 # О проекте
 
-Репозиторий отражает практическую модель внедрения AppSec в SDLC.
+Данный репозиторий — коллекция кейсов из моей личной практики в области анализа и предотвращения уязвимостей в приложениях и инфраструктуре.
 
-В рамках работы над реальными кейсами я:
+Репозиторий демонстрирует навыки работы на всех ключевых этапах AppSec:
 
-- систематизирую уязвимости по языкам, фреймворкам и инфраструктуре  
-- формализую паттерны эксплуатации и remediation  
-- анализирую первопричины уязвимостей и безопасные архитектурные паттерны  
-- формализую подходы обнаружения и предотвращения уязвимостей, которые могут быть интегрированы в DevSecOps-процессы  
-- снижаю риск попадания уязвимого кода в production через практики secure development  
+* выявление и анализ уязвимостей
+* моделирование и демонстрация эксплуатации
+* поиск корневых причин и внедрение исправлений
+* разработка профилактических мер и правил обнаружения
 
-**Цель проекта** — каталог уязвимостей с воспроизводимым security-процессом: от выявления риска до исправления и предотвращения повторного появления.
+Уязвимости систематизированы по следующим категориям:
+
+* языки программирования
+* контексты среды выполнения
+* фреймворки
+* инфраструктурные технологии
+* облачные платформы
+
+**Цель репозитория** — наглядно представить опыт работы с полным циклом AppSec‑задач. Каждый кейс выстроен по [воспроизводимой методологии](#подход) и охватывает этапы:  
+
+контекст продукта → уязвимость → эксплуатация → анализ → исправление → предотвращение → обнаружение
 
 ---
 
 # Подход
 
-Репозиторий наполняется по воспроизводимой методологии:
+Каждый кейс создаётся по воспроизводимой методологии:
 
-1. Определяю attack surface языка и выбранного контекста  
-2. Формирую пул high / critical уязвимостей  
-3. Мапплю уязвимости на конкретные фреймворки  
-4. Реализую уязвимый код  
-5. Демонстрирую эксплуатацию  
-6. Анализирую первопричину  
-7. Реализую корректное исправление  
-8. Формализую рекомендации предотвращения  
-9. Формализую правила автоматического обнаружения
-10. Подготавливаю практики предотвращения регрессии  
+1. Выбор реальной **фичи продукта / архитектурного контекста / стека**  
+2. Анализ **поверхности атаки**  
+3. Выявление наиболее вероятной **уязвимости**  
+4. Создание **уязвимого кода**  
+5. Демонстрация **эксплуатации**  
+6. Определение **первопричины уязвимости**  
+7. Внедрение **корректного исправления**  
+8. Формирование **рекомендаций по предотвращению**  
+9. Разработка шаблонов **правил обнаружения уязвимости** в security‑инструментах
 
 ---
 
@@ -44,75 +51,132 @@
 
 От корня репозитория:
 
-1. `devsecops/` — практические примеры реализации конфигураций инструментов безопасности, используемых для предотвращения регрессии уязвимостей.
+## `devsecops/`
 
-2. `infrastructure/` — уязвимости и best-practice для cloud, containerization, orchestration, IaC.
+Примеры конфигураций security-инструментов, сгруппированные по типу контроля.
 
-3. `languages/` — уязвимости по языкам и контекстам.
+## `infrastructure/`
 
-Внутри каждого языка используются контексты:
+Уязвимости и best practices для инфраструктуры.
 
-- `web`
-- `cli`
-- `system`
-- `mobile`
-- `embedded`
+Структура: **область → инструмент → контекст → кейс**
+
+Области:
+
+* `cloud/`
+* `containerization/`
+* `orchestration/`
+* `iac-and-config/`
+
+Контексты по областям:
+
+* **cloud:** `identity`, `compute`, `storage`, `network`, `secrets`, `logging-monitoring`
+* **containerization:** `image`, `build`, `runtime`, `registry`
+* **orchestration:** `rbac`, `workloads`, `network`, `secrets`, `configuration`, `supply-chain`
+* **iac-and-config:** `secrets`, `misconfiguration`, `drift`, `access`, `state-management`
 
 Каждый кейс содержит:
 
-- `vuln_app.*` — уязвимая реализация  
-- `fixed_app.*` — исправленная версия  
-- `exploit_payload.txt` — пример эксплуатации  
-- `CHECK_LIST.md` — рекомендации предотвращения  
-- `README.md` — анализ уязвимости  
+* `feature.md` — описание продукта и контекста возникновения уязвимости
+* `vuln_config/` — уязвимая реализация
+* `fixed_config/` — исправленная версия
+* `exploit/` — пример эксплуатации
+* `CHECK_LIST.md` — рекомендации и меры защиты
+* `README.md` — полный разбор кейса
 
-4. `README.md` — краткий гайд как использовать лабораторию.
+## `languages/`
 
-5. `VULNERABILITIES.md` — каталог уязвимостей с описанием и рекомендациями, по категориям.
+Уязвимости по языкам программирования.
+
+Структура: **язык → контекст → фреймворк → кейс**
+
+Контексты:
+
+* `web`
+* `cli`
+* `system`
+* `mobile`
+* `embedded`
+
+Каждый кейс содержит:
+
+* `feature.md` — описание продукта и контекста возникновения уязвимости
+* `vuln_app.*` — уязвимая реализация
+* `fixed_app.*` — исправленная версия
+* `exploit_payload.txt` — пример эксплуатации
+* `CHECK_LIST.md` — рекомендации и меры защиты
+* `README.md` — полный разбор кейса
+
+## `supply-chain/`
+
+Уязвимости и best practices для цепочки поставки ПО (Supply Chain Security).
+
+Структура: **домен → инструмент/технология → контекст → кейс**
+
+Домены:
+
+* `ci-cd/`
+* `dependencies/`
+* `artifacts/`
+
+Контексты по доменам:
+
+* **ci-cd:** `pipeline`, `secrets`, `access`, `artifacts`, `triggers`
+* **dependencies:** `confusion`, `typosquatting`, `poisoning`, `trust`, `versioning`
+* **artifacts:** `signing`, `provenance`, `integrity`, `distribution`
+
+Каждый кейс содержит:
+
+* `feature.md` — описание продукта и контекста возникновения уязвимости
+* `vuln_config/` — уязвимая реализация (pipeline, registry, dependency config и т.д.)
+* `fixed_config/` — исправленная версия
+* `exploit/` — пример эксплуатации
+* `CHECK_LIST.md` — рекомендации и меры защиты
+* `README.md` — полный разбор кейса
 
 ---
 
-# Как использовать лабораторию
+# Как использовать репозиторий
 
-**На примере кейса SQL Injection в Python/Flask:**
+**На примере кейса SQL Injection в Python/Flask** (шаги универсальны для любого кейса):
 
-1. Перейти к интересующему языку и контексту: [languages/python/web/flask/sql-injection-unparameterized-query](languages/python/web/flask/sql-injection-unparameterized-query)
+1. Перейти к интересующему языку и контексту:  
+   [languages/python/web/flask/sql-injection-login-query](languages/python/web/flask/sql-injection-login-query)
 
-2. Изучить уязвимую реализацию: [vuln_app.py](languages/python/web/flask/sql-injection-unparameterized-query/vuln_app.py)
+2. Изучить сценарий продукта и контекст возникновения уязвимости:  
+   [languages/python/web/flask/sql-injection-login-query/feature.md](languages/python/web/flask/sql-injection-login-query/feature.md)
 
-3. Ознакомиться с примером эксплуатации: [exploit_payload.txt](languages/python/web/flask/sql-injection-unparameterized-query/exploit_payload.txt)
+3. Изучить уязвимую реализацию:  
+   [languages/python/web/flask/sql-injection-login-query/vuln_app.py](languages/python/web/flask/sql-injection-login-query/vuln_app.py)
 
-4. Изучить анализ уязвимости: [README.md](languages/python/web/flask/sql-injection-unparameterized-query/README.md)
+4. Ознакомиться с примером эксплуатации:  
+   [languages/python/web/flask/sql-injection-login-query/exploit_payload.txt](languages/python/web/flask/sql-injection-login-query/exploit_payload.txt)
 
-5. Сравнить уязвимую и исправленную реализацию: [vuln_app.py](languages/python/web/flask/sql-injection-unparameterized-query/vuln_app.py) | [fixed_app.py](languages/python/web/flask/sql-injection-unparameterized-query/fixed_app.py)
+5. Изучить анализ уязвимости:  
+   [languages/python/web/flask/sql-injection-login-query/README.md](languages/python/web/flask/sql-injection-login-query/README.md)
 
-6. Изучить рекомендации предотвращения в чек-листе: [CHECK_LIST.md](languages/python/web/flask/sql-injection-unparameterized-query/CHECK_LIST.md)
+6. Изучить рекомендации предотвращения:  
+   [languages/python/web/flask/sql-injection-login-query/CHECK_LIST.md](languages/python/web/flask/sql-injection-login-query/CHECK_LIST.md)
 
-7. Изучить и внедрить в CI/CD правило автоматического обнаружения уязвимости: [devsecops/sast/semgrep/python/flask/sql-injection-unparameterized-query.yaml](devsecops/sast/semgrep/python/flask/sql-injection-unparameterized-query.yaml)
+7. Изучить примеры правил автоматического обнаружения уязвимости:  
 
-Лаборатория позволяет пройти полный цикл анализа уязвимости:
+   **SAST:**   
 
-**уязвимость → эксплуатация → анализ → исправление → предотвращение → автоматическое обнаружение**
+   * **Semgrep**: [devsecops/sast/semgrep/languages/python/web/flask/sql-injection-login-query.yaml](devsecops/sast/semgrep/languages/python/web/flask/sql-injection-login-query.yaml)
+   * **CodeQL**: [devsecops/sast/codeql/languages/python/web/flask/sql-injection-login-query.ql](devsecops/sast/codeql/languages/python/web/flask/sql-injection-login-query.ql)
+   * **Bandit**: [devsecops/sast/bandit/languages/python/web/flask/sql-injection-login-query.yaml](devsecops/sast/bandit/languages/python/web/flask/sql-injection-login-query.yaml)
 
-Итоговые рекомендации по использованию чек-листа для SQL Injection в Python/Flask:
+   **DAST:**   
 
-**Для аудита:**
+   * **Owasp ZAP**: [devsecops/dast/owasp-zap/languages/python/web/flask/sql-injection-login-query.yaml](devsecops/dast/owasp-zap/languages/python/web/flask/sql-injection-login-query.yaml)
+   * **Nuclei**: [devsecops/dast/nuclei/languages/python/web/flask/sql-injection-login-query.yaml](devsecops/dast/nuclei/languages/python/web/flask/sql-injection-login-query.yaml)
 
-- Пройтись по каждому пункту чек-листа, проверяя наличие SQL-инъекций в коде и конфигурации  
-- Использовать автоматизированные инструменты, например SQLi-детекторы или анализатор Flask-запросов
+   **Fuzzing:**   
 
-**Для разработки:**
+   * **RESTler**: [devsecops/fuzzing/restler/languages/python/web/flask/sql-injection-login-query.yaml](devsecops/fuzzing/restler/languages/python/web/flask/sql-injection-login-query.yaml)
+   * **FFUF**: [devsecops/fuzzing/ffuf/languages/python/web/flask/sql-injection-login-query.txt](devsecops/fuzzing/ffuf/languages/python/web/flask/sql-injection-login-query.txt)
 
-- Внедрить пункты чек-листа в процесс разработки и CI/CD: параметризованные запросы, ORM, валидация входных данных  
-- Обучить команду безопасным практикам работы с базой данных и хранению пользовательских данных
+   **Scripts:**   
 
-**Для эксплуатации:**
+   * **sql-injection-login-query.sh**: [devsecops/scripts/languages/python/web/flask/sql-injection-login-query.sh](devsecops/scripts/languages/python/web/flask/sql-injection-login-query.sh)
 
-- Регулярно обновлять зависимости (Flask, SQL драйверы)  
-- Мониторить логи на подозрительные запросы к базе данных  
-
-**Для углублённого анализа:**
-
-- Провести попытки SQL-инъекций на тестовом окружении  
-- Сопоставить действия с OWASP Top 10 для дополнительной проверки  
-- Проверить, что Semgrep-конфиг корректно детектирует уязвимость в разных вариантах запросов
