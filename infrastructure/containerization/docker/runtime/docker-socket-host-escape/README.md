@@ -9,6 +9,7 @@
 * [Impact](#impact)
 * [Root Cause](#root-cause)
 * [Fix (Base)](#fix-base)
+* [Prevention](#prevention)
 * [What’s Missing](#whats-missing)
 * [Next Step](#next-step)
 * [License](#license)
@@ -88,6 +89,15 @@ See fixed_config/
 
 Remove docker.sock mount.  
 Do not allow containers to access Docker daemon directly.
+
+---
+
+# Prevention
+
+Prevent issues through manual checks and **DevSecOps practices implementation**. 
+This case demonstrates one of many possible approaches — a combination of several tools — and is not the only viable solution.
+
+Find configurations in **DEVSECOPS.md**.
 
 ---
 

@@ -4,13 +4,15 @@
 * [Vulnerability Overview](#vulnerability-overview)
 * [Feature Context](#feature-context)
 * [Attack Surface](#attack-surface)
-* [Vulnerable Flow (High-Level)](#vulnerable-flow-high-level)
+* [Vulnerable Flow](#vulnerable-flow)
 * [Exploit](#exploit)
 * [Impact](#impact)
 * [Root Cause](#root-cause)
 * [Fix (Base)](#fix-base)
+* [Prevention](#prevention)
 * [What’s Missing](#whats-missing)
 * [Next Step](#next-step)
+* [License](#license)
 
 ---
 
@@ -43,7 +45,7 @@ Boundary: user input → server HTML response → browser execution.
 
 ---
 
-# Vulnerable Flow (High-Level)
+# Vulnerable Flow
 
 User sends search request with input.  
 Server injects input into HTML response.  
@@ -86,6 +88,16 @@ Convert unsafe characters into safe output.
 
 ---
 
+# Prevention
+
+Prevent issues through manual checks and **DevSecOps practices implementation**. 
+
+This case demonstrates one of many possible approaches — a combination of several tools — and is not the only viable solution.
+
+Find configurations in **DEVSECOPS.md**.
+
+---
+
 # What’s Missing
 
 Bypass techniques  
@@ -106,3 +118,8 @@ hardening
 detection  
 
 → full production version is available in appsec-forge-pro
+
+# License
+
+This case is part of the repository licensed under the MIT License.
+See the root LICENSE file for details.
